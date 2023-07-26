@@ -1,10 +1,10 @@
 <template>
     <div class="flex items-center bg-dark-blue h-16 p-4 elevation-1">
       <!-- Icon and Title on the left -->
-      <div class="flex items-center gap-2">
-        <!-- Replace 'icon-class' with the appropriate class for your icon -->
-        <i class="icon fa-solid fa-earth-africa  text-white text-2xl"></i>
-        <h1 class=" h1 text-white text-xl">Project Jowi</h1>
+      <div class="flex items-center">
+
+        <i class="icon fa-solid fa-earth-africa  text-white text-2xl"> </i>
+        <h1 class=" h1 text-white text-xl"> <a href="/"> Project Jowi </a></h1>
       </div>
   
       <!-- Spacing between Icon/Title and Login/Signup links -->
@@ -14,7 +14,7 @@
       <div class="flex gap-4 w-1/6 justify-evenly ">
         <button class="rounded-full bg-light-blue w-[50%]"> <a href="/login" class="text-white">Login</a> </button>
         
-        <a href="#" class="text-white">Signup</a>
+        <a href="/signup" class="text-white">Signup</a>
       </div>
     </div>
   </template>
