@@ -4,6 +4,7 @@ import SignupView from '../views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
 import ShipperDashboardView from '../views/ShipperDashboardView'
 
+
 const routes = [
   {
     path: '/',
@@ -37,4 +38,7 @@ const router = createRouter({
   routes
 })
 
-export default router
+
+export default router 
+
+
