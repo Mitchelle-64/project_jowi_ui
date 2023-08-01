@@ -15,3 +15,4 @@ import LoginForm from '@/components/LoginForm.vue';
 <style scoped>
 
 </style>
+

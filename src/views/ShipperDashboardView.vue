@@ -1,5 +1,14 @@
 <template>
-    <div>
+    <v-layout>
+        <v-navigation-drawer>
+            <v-list>
+                <v-list-item>
+
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
         
-    </div>
+    </v-layout>
+    
+    
 </template>

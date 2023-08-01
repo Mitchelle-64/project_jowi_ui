@@ -28,14 +28,14 @@
     <div class="flex items-center justify-center h-screen bg-dark-blue">
       <div class="w-96 p-6 rounded-lg bg-white shadow-lg">
         <h2 class="text-3xl text-center font-semibold text-dark-blue mb-6">Login</h2>
-        <form class="form flex flex-col gap-4" @submit.prevent="loginShipper">
+        <form class="form flex flex-col gap-4" @submit.prevent="loginUser">
           <div class="inputDiv">
             <label for="email" class="text-dark-blue">Email:</label>
-            <input type="email" placeholder="Enter your email" v-model="formData.email" class="input" />
+            <input type="email" placeholder="Enter your email" v-model="userData.email" class="input" />
           </div>
           <div class="inputDiv">
             <label for="password" class="text-dark-blue">Password:</label>
-            <input type="password" placeholder="Enter your password" v-model="formData.password" class="input" />
+            <input type="password" placeholder="Enter your password" v-model="userData.password" class="input" />
           </div>
           <div class="inputDiv">
             <button type="submit" class="btn rounded-full bg-light-blue px-6 py-1 text-white text-xl">
@@ -56,26 +56,45 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-
+import jwt_decode from 'jwt-decode';
 const router = useRouter();
 
-const formData = ref({
-  email: '',
+const userData = ref({
+  email:'',
   password: '',
 });
 
 // Function to handle shipper signup
-const loginShipper = async () => {
-    console.log(formData.value);
+const loginUser = async () => {
+    console.log(userData.value);
   try {
-    const response = await axios.post('http://localhost:3000/api/v1/shipper/login', formData.value);
+    const response = await axios.post('http://localhost:3000/api/v1/login', userData.value);
 
     console.log(response.data.token);
     const authToken = response.data.token;
-    localStorage.setItem('auth-token', authToken)
-    router.push({name: 'shipper-dashboard'});
+    localStorage.setItem('authToken', authToken)
 
-    console.log('shipper logged in successfully')
+    // Decode the JWT token to get the payload (which contains the user's role)
+    const decodedToken = jwt_decode(authToken);
+
+    // Access the user's role from the decoded token
+    const userRole = decodedToken.role;
+
+    if (userRole === 'admin') {
+      //redirect to shipper dashboard
+      router.push({name: 'admin-dashboard'});
+    } else if (userRole === 'transporter') {
+      router.push({name: 'transporter-dashboard'});
+    } else if (userRole === 'driver'){
+      router.push({name: 'driver-dashboard'});
+    } else {
+      router.push({name: 'shipper-dashboard'});
+    }
+
+    // router.push({name: 'shipper-dashboard'});
+
+
+    console.log('user logged in successfully')
 
   } catch (error) {
     console.error('Error sending data:', error);
