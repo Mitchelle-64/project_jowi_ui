@@ -16,9 +16,22 @@
       </router-link>
       <router-link to="/signup" class="text-white">Signup</router-link>
     </div>
+
+    <p> {{ store.state.isLoggedIn }}  </p>
   </nav>
+
+
   <router-view />
 </template>
+
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+store.commit('setIsLoggedIn');
+
+</script>
 
 <style scoped>
 /* Add additional styles here if needed */
