@@ -1,50 +1,80 @@
 <template>
-  <!-- <nav class="flex items-center bg-dark-blue h-16 p-4 elevation-1">
-    Icon and Title on the left
-    <div class="flex items-center">
-      <i class="icon fa-solid fa-earth-africa text-white text-2xl"></i>
-      <router-link to="/" class="h1 text-white text-xl">Project Jowi</router-link>
-    </div>
+  <v-app>
+    <v-card>
+      <v-layout row wrap>
+        <!-- toolbar for logged in users -->
+        <v-toolbar :elevation="0" v-if="store.state.isLoggedIn" :rounded="false" class="nav flex items-center pl-2 pr-2 bg-dark-blue">
 
-    Spacing between Icon/Title and Login/Signup links
-    <div class="flex-grow"></div>
+          <div class="flex items-center">
+            <v-btn variant="plain" to="/" class="flex items-center text-white" prepend-icon="mdi:mdi-earth">
+              Project Jowi
+            </v-btn>
+          </div>
+          
+          <!-- Spacing between Icon/Title and Login/Signup links -->
+          <div class="flex-grow"></div>
 
-    Login and Signup links on the right
-    <div class="flex gap-4 w-1/6 justify-evenly">
-      <router-link to="/login" class="flex items-center rounded-full bg-light-blue w-[50%] text-white h-10 justify-center">
-        Login
-      </router-link>
-      <router-link to="/signup" class="text-white">Signup</router-link>
-    </div>
+          <div class="flex gap-3 justify-evenly">
+            
+            <!-- Redirect to the respective dashboard based on the user's role -->
+            <v-btn @click="redirectToDashboard" class="rounded-full">
+              <v-icon class="text-white">mdi-monitor-dashboard</v-icon>
+            </v-btn>
 
-    <p> {{ store.state.isLoggedIn }}  </p>
-  </nav> -->
+            
 
-  
+            <v-btn class= "text-white">
+              <v-icon>mdi-account-circle-outline</v-icon>
+            </v-btn>
 
-  
-
-  <v-card>
-    <v-layout row wrap>
-      <v-toolbar v-if="store.state.isLoggedIn">
-        <v-btn color="success" to="/"> Project Jowi </v-btn>
-        <v-btn color="success" to="/logout"> Logout </v-btn>
-        <v-btn color="success">  Account Centre </v-btn>
-        <!-- Redirect to the respective dashboard based on the user's role -->
-        <v-btn color="success" @click="redirectToDashboard"> Dashboard</v-btn>  
-      </v-toolbar>
-
-      <v-toolbar color="primary" v-else>
-        <v-btn color="success" to="/">Project Jowi </v-btn>
-        <v-btn color="success" to="/login"> Login </v-btn>
-        <v-btn color="success" to="/signup"> Signup </v-btn>
+            <v-btn to="/logout" class=" bg-light-yellow">
+              <v-icon>mdi-logout</v-icon>
+            </v-btn>
+          
+              
+          </div>
+          
+          
+        </v-toolbar>
         
-      </v-toolbar>
-      
-    </v-layout>
-  </v-card>
+        <!-- toolbar for logged out users -->
+        <v-toolbar :elevation="0" v-else class="nav flex items-center pl-2 pr-2 bg-dark-blue">
+          <!-- Project Jowi button on the left side -->
+          <div class="flex items-center">
+            <v-btn variant="plain" to="/" color="" class="flex items-center text-white" prepend-icon="mdi:mdi-earth">
+              Project Jowi
+            </v-btn>
+          </div>
 
-  <router-view />
+          <div class="flex-grow"></div>
+
+          <div class="flex gap-3 justify-evenly">
+            
+
+            <v-btn to="/signup" class=" bg-light-yellow">
+              Signup
+            </v-btn>
+
+            <v-btn to="/login" class= "text-white" prepend-icon="mdi: mdi-login-variant">
+              Login
+            </v-btn>
+
+          </div>
+        </v-toolbar>
+
+
+        
+      </v-layout>
+    </v-card>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
+  
+
+
+  
 
 
 
@@ -86,31 +116,13 @@ const redirectToDashboard = () => {
 </script>
 
 <style scoped>
-/* Add additional styles here if needed */
 
-/* Center the icon and title vertically within the flex container
-nav .icon,
-nav .h1 {
-  margin-top: auto;
-  margin-bottom: auto;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-nav .h1 {
-  font-family: 'Comfortaa', cursive;
-}
 
-/* Add gap between the icon and the dark-blue background */
-/* nav .icon {
-  margin-right: 8px;
-} */
 
-/* Add padding to the login and signup links
-nav a {
-  padding: 0.5rem 1rem;
-}
 
-Center the text within the light blue background
-nav .rounded-full {
-  display: flex;
-} */
+
 </style>

@@ -2,8 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    isLoggedIn: false
-
+    isLoggedIn: false,
   },
 
   getters: {
@@ -16,7 +15,13 @@ export default createStore({
       if(token) {
         state.isLoggedIn = true
       }
-    }
+    }, 
+
+    
+
+
+
+  
   },
 
   actions: {
