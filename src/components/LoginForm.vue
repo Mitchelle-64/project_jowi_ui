@@ -55,6 +55,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+// import store from '@/store';
 import { useRouter } from 'vue-router';
 import jwt_decode from 'jwt-decode';
 const router = useRouter();
@@ -92,6 +93,9 @@ const loginUser = async () => {
     }
 
     // router.push({name: 'shipper-dashboard'});
+
+    
+
 
 
     console.log('user logged in successfully')

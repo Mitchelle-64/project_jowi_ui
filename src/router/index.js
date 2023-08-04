@@ -16,13 +16,12 @@ import FourOFourView from '../views/FourOFourView.vue'
 
 //define roles so we can build navigation guards
 // Define roles here
+
+
 const ADMIN_ROLE = 'admin';
 const SHIPPER_ROLE = 'shipper';
 const DRIVER_ROLE = 'driver';
 const TRANSPORTER_ROLE = 'transporter';
-
-
-
 
 
 const routes = [
